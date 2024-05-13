@@ -3,12 +3,7 @@ from pyzbar.pyzbar import decode
 import numpy as np
 import base64
 
-def __testBase64(imageAsString: str):
-    resultArray = base64.b64decode(imageAsString)
-    return BarcodeReader(resultArray)
-    
-
-def BarcodeReader(imageBytes: bytes):
+def __elementReader(imageBytes: bytes):
    if not isinstance(imageBytes, bytes):
        raise TypeError(f'Expected image to be bytes, received: {type(imageBytes)}')
    
@@ -26,3 +21,7 @@ def BarcodeReader(imageBytes: bytes):
         returnDict[f'element{index}'] = {'data': str(element.data, encoding='utf-8'), 'type': element.type}
         
    return returnDict
+
+def readElements(base64Image: str):
+    resultArray = base64.b64decode(base64Image)
+    return __elementReader(resultArray)
