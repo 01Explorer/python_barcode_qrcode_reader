@@ -36,5 +36,5 @@ def validateElements():
         return jsonify({'message': e.args[0]})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8001)
 
